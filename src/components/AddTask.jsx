@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import TaskContext from '../context/taskContext';
 
-const AddTask = ({ history }) => {
+const AddTask = () => {
+  const navigate = useNavigate()
   const { Taskstate, Taskdispatch } = React.useContext(TaskContext);
   const titleRef = React.useRef();
 
@@ -19,7 +21,7 @@ const AddTask = ({ history }) => {
       [name]: value
     });
   };
-  const handleSubmit = (event, history) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     if (task.title.trim().length === 0 || task.title.trim().length < 10)
       alert('Zadatak mora imati više od 10 slova');
@@ -32,11 +34,11 @@ const AddTask = ({ history }) => {
       title: '',
       completed: false
     });
-    history.push('/tasks');
+    navigate('/tasks');
   };
   React.useEffect(() => titleRef.current.focus(), []);
   return (
-    <form style={form} onSubmit={event => handleSubmit(event, history)}>
+    <form style={form} onSubmit={event => handleSubmit(event)}>
       <div className="form-group">
         <label htmlFor="task">Naziv zadatka</label>
         <input
@@ -68,7 +70,7 @@ const AddTask = ({ history }) => {
       </button>
       <button
         className="btn btn-danger mx-2"
-        onClick={() => history.push('/tasks')}
+        onClick={() => navigate('/tasks')}
       >
         Poništi
       </button>

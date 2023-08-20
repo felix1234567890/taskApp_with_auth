@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import TaskContext from '../context/taskContext';
 
-const TaskItem = ({ task, history }) => {
+const TaskItem = ({ task }) => {
+  const navigate = useNavigate()
   const { Taskdispatch } = React.useContext(TaskContext);
   return (
     <div className="card border-dark w-50 mx-auto my-3">
@@ -22,7 +24,7 @@ const TaskItem = ({ task, history }) => {
             className="btn btn-success"
             onClick={() => {
               Taskdispatch({ type: 'SET_CURRENT', payload: task });
-              history.push('/addTask');
+              navigate('/addTask');
             }}
           >
             Izmijeni

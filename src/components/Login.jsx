@@ -114,6 +114,7 @@ const Login = ({ history }) => {
           placeholder="Unesi lozinku"
           value={data.password}
           onChange={onChangeHandler}
+          autoComplete="on"
         />
         <div className={` ${password ? 'invalid-feedback' : 'valid-feedback'}`}>
           {password ? 'Lozinka mora biti duža od 6 znakova' : 'OK'}

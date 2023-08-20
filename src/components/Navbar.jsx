@@ -1,10 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
-import { withRouter } from 'react-router-dom';
 
-const Navbar = ({ history }) => {
+const Navbar = () => {
+  const navigate = useNavigate()
   const { state, dispatch } = React.useContext(AuthContext);
-  console.log(state);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand" href="#">
@@ -17,7 +17,7 @@ const Navbar = ({ history }) => {
             <a
               className="nav-link"
               href="#"
-              onClick={() => history.push('/addTask')}
+              onClick={() => navigate('/addTask')}
             >
               DODAJ ZADATAK
             </a>
@@ -37,7 +37,7 @@ const Navbar = ({ history }) => {
   );
 };
 
-export default withRouter(Navbar);
+export default Navbar
 
 const iconStyle = {
   borderRadius: '50%',
